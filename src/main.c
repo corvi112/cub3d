@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 15:44:55 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/09/08 14:55:40 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/09/11 22:49:34 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ int	main(int argc, char **argv)
 	if (parsing(argv[1]) == 1)
 		return (1);
 	//check extansion de l'arg
-	printf("%s\n", argv[1]);
 	return (0);
 }

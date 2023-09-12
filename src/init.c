@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:12:44 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/09/11 18:23:55 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/09/11 23:42:17 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,57 +58,24 @@ char	**recover_file(char *str)
 	return (split);
 }
 
-int	is_texture(char *str)
-{
-	if (ft_strncmp("NO", str, 2) == 0)
-		return (0);
-	else if (ft_strncmp("SO", str, 2) == 0)
-		return (0);
-	else if (ft_strncmp("WE", str, 2) == 0)
-		return (0);
-	else if (ft_strncmp("EA", str, 2) == 0)
-		return (0);
-	else if (ft_strncmp("F", str, 1) == 0)
-		return (0);
-	else if (ft_strncmp("C", str, 1) == 0)
-		return (0);
-	return (1);
-}
-
-
-
 t_game	*ft_init_game(char *str)
 {
 	t_game	*game;
 	char	**split;
-	int		i;
-	int		k;
-
 
 	game = malloc(sizeof(t_game));
 	game->texture = malloc(sizeof(t_texture));
+	game->texture->north = NULL;
+	game->texture->south = NULL;
+	game->texture->east = NULL;
+	game->texture->west = NULL;
+	game->texture->floor = NULL;
+	game->texture->ceiling = NULL;
+	game->map = NULL;
 	split = recover_file(str);
-	if (!split)
-		return (NULL);
-	i = 0;
-	k = 0;
-	while(split[i])
+	if (!split || ft_init_game_2(game, split) == 1)
 	{
-		if (k == 6)
-			break ;
-		if (is_texture(split[i]) == 0)
-		{
-			printf("texture = %s", split[i]);
-			k++;
-		}
-		i++;
-	}
-	if (k < 6)
-	{
-		printf("error\n");	//msg d'erreur
-		ft_free_tab(split);
-		free(game->texture);
-		free(game);
+		ft_free_game(game);
 		return (NULL);
 	}
 	return (game);

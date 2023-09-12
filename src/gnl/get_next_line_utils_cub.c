@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 19:18:08 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/09/09 17:51:07 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/09/11 23:31:13 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_strjoin_gnl_cub(char *s1, char *s2, int nb_read)
 	i = 0;
 	j = 0;
 	str = ft_calloc_gnl_cub(ft_strlen_gnl_cub(s1) + nb_read + 1,
-		sizeof(char *));
+			sizeof(char *));
 	if (str == NULL)
 		return (NULL);
 	while (s1 && s1[i] != '\0')
