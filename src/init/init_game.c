@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/08 15:12:44 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/09/11 23:42:17 by ecorvisi         ###   ########.fr       */
+/*   Created: 2023/09/26 15:38:12 by ecorvisi          #+#    #+#             */
+/*   Updated: 2023/09/29 16:18:12 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static char	**ft_addtab(char	**tab, char *str)
 	i = 0;
 	while (tab[i])
 	{
-		dup_tab[i] = ft_strdup(tab[i]);
+		dup_tab[i] = ft_strdup_cub(tab[i]);
 		i++;
 	}
-	dup_tab[i] = ft_strdup(str);
+	dup_tab[i] = ft_strdup_cub(str);
 	i = 0;
 	while (tab[i])
 	{
@@ -44,7 +44,7 @@ char	**recover_file(char *str)
 	fd = open(str, O_RDWR);
 	if (fd == -1)
 	{
-		printf("error\n");	//msg d'erreur
+		ft_putstr_fd("Error\nProblem opening file\n", 2);
 		return (NULL);
 	}
 	buffer = get_next_line_cub(fd);
@@ -58,22 +58,33 @@ char	**recover_file(char *str)
 	return (split);
 }
 
+t_texture	*ft_malloc_texture(void)
+{
+	t_texture	*new;
+
+	new = malloc(sizeof(t_texture));
+	new->pathfile = NULL;
+	new->sprite = NULL;
+	return (new);
+}
+
 t_game	*ft_init_game(char *str)
 {
 	t_game	*game;
 	char	**split;
 
 	game = malloc(sizeof(t_game));
-	game->texture = malloc(sizeof(t_texture));
-	game->texture->north = NULL;
-	game->texture->south = NULL;
-	game->texture->east = NULL;
-	game->texture->west = NULL;
-	game->texture->floor = NULL;
-	game->texture->ceiling = NULL;
+	game->north = ft_malloc_texture();
+	game->south = ft_malloc_texture();
+	game->east = ft_malloc_texture();
+	game->west = ft_malloc_texture();
+	game->floor = malloc(sizeof(t_rgb));
+	game->ceiling = malloc(sizeof(t_rgb));
+	game->floor->rgb_line = NULL;
+	game->ceiling->rgb_line = NULL;
 	game->map = NULL;
 	split = recover_file(str);
-	if (!split || ft_init_game_2(game, split) == 1)
+	if (!split || ft_init_game_texture(game, split) == 1)
 	{
 		ft_free_game(game);
 		return (NULL);

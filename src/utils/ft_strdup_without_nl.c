@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup_without_nl.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 15:44:55 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/09/19 14:41:10 by ecorvisi         ###   ########.fr       */
+/*   Created: 2023/09/26 15:28:54 by ecorvisi          #+#    #+#             */
+/*   Updated: 2023/09/26 15:29:46 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int argc, char **argv)
+char	*ft_strdup_cub(const char *s)
 {
-	if (argc != 2)
+	char	*dup;
+	size_t	len;
+	int		i;
+
+	i = 0;
+	len = ft_strlen(s);
+	dup = malloc(sizeof (char) * len + 1);
+	if (dup == NULL)
+		return (NULL);
+	while (s[i] != '\0' && s[i] != '\n')
 	{
-		ft_putstr_fd("Error\n", 2);
-		return (1);
+		dup[i] = s[i];
+		i++;
 	}
-	if (parsing(argv[1]) == 1)
-		return (1);
-	return (0);
+	dup[i] = '\0';
+	return (dup);
 }

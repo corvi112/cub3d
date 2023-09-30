@@ -6,7 +6,7 @@
 #    By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 15:39:30 by ecorvisi          #+#    #+#              #
-#    Updated: 2023/09/12 17:21:04 by ecorvisi         ###   ########.fr        #
+#    Updated: 2023/09/29 19:21:06 by ecorvisi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,19 @@ OBJ_DIR = obj
 DIR_OBJS = mkdir -p $(@D)
 
 SRC = 	main.c\
-		init.c \
-		init2.c \
+		init/init_game.c \
+		init/init_texture.c \
+		init/init_RGB.c \
+		init/init_map.c\
 		gnl/get_next_line_cub.c\
 		gnl/get_next_line_utils_cub.c\
 		utils/utils.c \
+		utils/ft_strdup_without_nl.c\
 		parsing/parsing.c \
-		free/free.c
+		parsing/parsing_utils.c \
+		parsing/parsing_texture.c \
+		free/free.c \
+		free/return_error.c
 
 SRCS = $(SRC:%=$(SRC_DIR)/%)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

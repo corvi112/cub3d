@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:30:07 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/09/11 23:41:18 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/09/29 19:24:19 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,30 @@ void	ft_free_tab(char **str)
 	free(str);
 }
 
+void	ft_free_texture(t_texture *texture)
+{
+	if (texture->pathfile != NULL)
+		free(texture->pathfile);
+	if (texture->sprite != NULL)
+	{
+		printf("a changer dans free\n");
+	}
+	free(texture);
+}
+
 void	ft_free_game(t_game *game)
 {
 	if (game->map != NULL)
 		ft_free_tab(game->map);
-	if (game->texture->north)
-		free(game->texture->north);
-	if (game->texture->south)
-		free(game->texture->south);
-	if (game->texture->east)
-		free(game->texture->east);
-	if (game->texture->west)
-		free(game->texture->west);
-	if (game->texture->floor)
-		free(game->texture->floor);
-	if (game->texture->ceiling)
-		free(game->texture->ceiling);
-	free(game->texture);
+	ft_free_texture(game->north);
+	ft_free_texture(game->south);
+	ft_free_texture(game->east);
+	ft_free_texture(game->west);
+	if (game->ceiling->rgb_line != NULL)
+		free(game->ceiling->rgb_line);
+	if (game->floor->rgb_line != NULL)
+		free(game->floor->rgb_line);
+	free(game->floor);
+	free(game->ceiling);
 	free(game);
 }
