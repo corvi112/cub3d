@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:53:49 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/09/27 19:30:11 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:39:38 by acomet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	check_extention(char *str)
 	return (0);
 }
 
-int	parsing(char *str)
+t_game	*parsing(char *str)
 {
 	t_game	*game;
 
@@ -104,18 +104,18 @@ int	parsing(char *str)
 	if (check_extention(str) == 1)
 	{
 		ft_putstr_fd("Error\nThe file is not an extension '.cub'\n", 2);
-		return (1);
+		return (NULL);
 	}
 	if (check_filename(str) == 1)
 	{
 		ft_putstr_fd("Error\nThe file name is not allow\n", 2);
-		return (1);
+		return (NULL);
 	}
 	game = ft_init_game(str);
 	if (!game)
-		return (1);
+		return (NULL);
 	if (check_map(game) == 1)
-		return (1);
+		return (NULL);
 	printf("texture NO = %s\ntexture SO = %s\ntexture EA = %s\ntexture WE = %s\n", game->north->pathfile, game->south->pathfile, game->east->pathfile, game->west->pathfile);
 	printf("---------------\n|    FLOOR    |\n---------------\n\n	RED = %i\n	GREEN = %i\n	BLUE = %i\n---------------\n|   CEILING   |\n---------------\n\n	RED = %i\n	GREEN = %i\n	BLUE = %i\n",game->floor->red, game->floor->green, game->floor->blue, game->ceiling->red, game->ceiling->green, game->ceiling->blue);
 	int i = 0;
@@ -125,5 +125,5 @@ int	parsing(char *str)
 		i++;
 	}
 	printf("\n");
-	return (0);
+	return (game);
 }

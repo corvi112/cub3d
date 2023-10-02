@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   draw_square.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acomet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 15:44:55 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/02 17:40:37 by acomet           ###   ########.fr       */
+/*   Created: 2023/09/16 16:49:36 by acomet            #+#    #+#             */
+/*   Updated: 2023/09/19 20:51:02 by acomet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int argc, char **argv)
+void	draw_square_grid(t_mlx *mlx, int x, int y, uint32_t color)
 {
-	t_game	*game;
+	int	x_max;
+	int	y_max;
 
-	if (argc != 2)
+	x_max = x + SQUARE;
+	y_max = y + SQUARE;
+	x++;
+	while (x < x_max)
 	{
-		ft_putstr_fd("Error\n", 2);
-		return (1);
+		y = y_max - SQUARE + 1;
+		while (y < y_max)
+		{
+			mlx_put_pixel(mlx->mini_map, x, y, color);
+			y++;
+		}
+		x++;
 	}
-	game = parsing(argv[1]);
-	if (!game)
-		return (1);
-	if (execution(game) == 1)
-		return (1);
-	return (0);
 }

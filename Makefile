@@ -6,13 +6,13 @@
 #    By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 15:39:30 by ecorvisi          #+#    #+#              #
-#    Updated: 2023/09/29 19:21:06 by ecorvisi         ###   ########.fr        #
+#    Updated: 2023/10/02 17:23:19 by acomet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = clang
 CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -g3
-CPPFLAGS = -Iinc
+CPPFLAGS = -Iinc -I ./MLX42/include
 
 NAME = cub3D
 LIB = libft/libft.a
@@ -36,7 +36,20 @@ SRC = 	main.c\
 		parsing/parsing_utils.c \
 		parsing/parsing_texture.c \
 		free/free.c \
-		free/return_error.c
+		free/return_error.c \
+		execution/execution.c \
+		execution/cub_hook.c \
+		execution/draw_cub.c \
+		execution/player.c \
+		execution/draw_map.c \
+		execution/draw_square.c \
+		execution/player_directions.c \
+		execution/player_view_angle.c \
+		execution/draw_line.c \
+		execution/draw_rubikscube.c \
+		execution/draw_rays.c \
+		execution/position_available.c \
+		
 
 SRCS = $(SRC:%=$(SRC_DIR)/%)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -51,7 +64,7 @@ $(NAME): $(OBJS)
 	@echo "\033[1;4m\033[1;33m                       \033[0m"
 	@echo "\033[1;4m\033[1;33m\033[1;1m*      COMPILING      *\033[0m"
 	@make bonus -s -C libft
-	@$(CC) $(OBJS) -o $(NAME) $(LIBFT_FLAGS) $(LIB) -lreadline
+	@$(CC) $(OBJS) -o $(NAME) $(LIBFT_FLAGS) $(LIB) $(CPPFLAGS) $(LIBS) -lreadline
 	@echo "\033[1;4m\033[1;32m                            \033[0m"
 	@echo "\033[1;4m\033[1;32m\033[1;1m*      CUB3D COMPILED      *\033[0m"
 
