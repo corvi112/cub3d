@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:38:12 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/03 12:08:47 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/15 18:05:33 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_texture	*ft_malloc_texture(void)
 
 	new = malloc(sizeof(t_texture));
 	new->pathfile = NULL;
-	new->sprite = NULL;
+	new->png = NULL;
 	return (new);
 }
 

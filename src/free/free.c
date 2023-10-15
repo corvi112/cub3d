@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:30:07 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/03 15:16:49 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/15 18:05:59 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_free_texture(t_texture *texture)
 {
 	if (texture->pathfile != NULL)
 		free(texture->pathfile);
-	if (texture->sprite != NULL)
+	if (texture->png != NULL)
 	{
 		printf("a changer dans free\n");
 	}
