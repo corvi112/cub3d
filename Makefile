@@ -6,7 +6,7 @@
 #    By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 15:39:30 by ecorvisi          #+#    #+#              #
-#    Updated: 2023/10/12 15:39:32 by ecorvisi         ###   ########.fr        #
+#    Updated: 2023/10/15 22:38:46 by acomet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,15 +46,15 @@ SRC = 	main.c\
 		execution/draw_cub.c \
 		execution/player.c \
 		execution/draw_map.c \
+		execution/draw_map_partial.c \
 		execution/draw_square.c \
 		execution/player_directions.c \
 		execution/player_view_angle.c \
 		execution/draw_line.c \
 		execution/draw_rubikscube.c \
 		execution/draw_rays.c \
-		execution/position_available.c \
+		execution/movement_impossible.c \
 		
-
 SRCS = $(SRC:%=$(SRC_DIR)/%)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm

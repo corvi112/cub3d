@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 15:44:55 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/03 15:35:21 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/15 22:40:12 by acomet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	game = parsing(argv[1]);
 	if (!game)
 		return (1);
-	// if (execution(game) == 1)
-	// 	return (1);
+	if (execution(game) == 1)
+		return (1);
 	return (0);
 }

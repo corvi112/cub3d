@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 15:54:00 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/15 17:55:12 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/15 22:41:27 by acomet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,26 @@
 # define PI 3.1415926535
 // # define WIDTH 5120
 // # define HEIGHT 2880
-# define WIDTH 1024
-# define HEIGHT 512
+# define WIDTH 1920
+# define HEIGHT 1080
 # define YELLOW 0xffff00ff
 # define WHITE 0xffffffff
 # define BLACK 0x000000ff
 # define RED 0xff0000ff
 # define GREEN 0x00ff00ff
-# define PLAYER_SIZE 2
+# define BLUE 0x000000ff
+# define GREY 0x808080ff
+# define BASIC 0x00000000
+# define NO_COLOR 4294967296
+# define PLAYER_SIZE 1
 # define PLAYER_RAY_SIZE 10
-# define SPEED 4
-# define SQUARE 64
-# define FOV 45
+// # define SQUARE 64
+# define SQUARE_MAP 12
+# define MAP_SIZE 8
+# define SPEED 1
+# define MAP_WIDTH 8
+# define MAP_HEIGHT 8
+# define FOV 33
 # define RAY_STEP_DEGREE 1
 
 typedef struct s_ray
@@ -147,10 +155,11 @@ void		cub_hook(void *param);
 
 	/*	draw	*/
 int			draw_cub(t_game	*game);
+int			movement_impossible(char **map, t_player *player, t_coor coor);
 
 	/*	player	*/
 t_player	*init_player(t_game *game);
-void		draw_player(t_game *game, t_player *player);
+void		draw_player(mlx_image_t *img);
 
 		/*	player directions	*/
 int			player_directions(t_game *game, t_mlx *mlx, t_player *player);
@@ -159,16 +168,23 @@ int			player_directions(t_game *game, t_mlx *mlx, t_player *player);
 int			player_view_angle(t_mlx *mlx, t_player *player);
 
 	/*	draw map	*/
-void		draw_map(t_game *game);
+void		draw_map(t_game *game, t_player *player);
+uint32_t	get_square_color(char **map, int x, int y, t_game *game);
+void		draw_map_partial_square_axis_first(t_game *game, t_player *player, t_coor coor);
+void		draw_map_partial_square_axis_last(t_game *game, t_player *player, t_coor coor);
+void		draw_map_partial_square_ordin_first(t_game *game, t_player *player, t_coor coor);
+void		draw_map_partial_square_ordin_last(t_game *game, t_player *player, t_coor coor);
 
 	/*	draw square	*/
-void		draw_square_grid(t_mlx *mlx, int x, int y, uint32_t color);
+void		draw_square_grid(t_game *game, int x, int y, uint32_t color);
+void		draw_square_partial_grid(t_mlx *mlx, t_coor coor, uint32_t color, t_player *player);
 
 	/*	draw rubikscube	*/
 void		draw_rubikscube(t_game *game, t_player *player);
 
 	/*	draw rays	*/
 void		draw_rays(t_game *game, t_player *player, t_ray *ray);
+void		assign_coor_draw_line(t_game *game, t_ray ray);
 
 	/*	draw line	*/
 void		draw_line(mlx_image_t *img, t_coor coor, uint32_t color);

@@ -6,7 +6,7 @@
 /*   By: acomet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 22:44:28 by acomet            #+#    #+#             */
-/*   Updated: 2023/10/02 15:13:45 by acomet           ###   ########.fr       */
+/*   Updated: 2023/10/15 22:28:28 by acomet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	draw_cub(t_game	*game)
 	game->mlx->mini_map = mlx_new_image(game->mlx->mlx, WIDTH, HEIGHT);
 	if (!game->mlx->mini_map)
 		return (1);
-	draw_map(game);
-	draw_player(game, game->player);
 	draw_rubikscube(game, game->player);
 	if (mlx_image_to_window(game->mlx->mlx, game->mlx->mini_map, 0, 0))
 	{
