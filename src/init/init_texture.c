@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:40:21 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/09/29 16:25:23 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:11:54 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ int	ft_check_if_texture(t_game *game, char **split)
 					"Error\nNot only texture before map\n"));
 		i++;
 	}
+	if (ft_check_if_error(game) == 1)
+		return (return_error_texture(-1, split, NULL));
 	if (k < 6)
 		return (return_error_texture(-1, split, "Error\nTexture missing\n"));
 	return (i);

@@ -6,7 +6,7 @@
 #    By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 15:39:30 by ecorvisi          #+#    #+#              #
-#    Updated: 2023/10/02 17:23:19 by acomet           ###   ########.fr        #
+#    Updated: 2023/10/12 15:39:32 by ecorvisi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,17 @@ SRC = 	main.c\
 		init/init_texture.c \
 		init/init_RGB.c \
 		init/init_map.c\
+		init/init_utils.c \
 		gnl/get_next_line_cub.c\
 		gnl/get_next_line_utils_cub.c\
 		utils/utils.c \
 		utils/ft_strdup_without_nl.c\
 		parsing/parsing.c \
 		parsing/parsing_utils.c \
+		parsing/parsing_utils2.c \
 		parsing/parsing_texture.c \
+		texture/load_texture.c \
+		texture/check_texture.c \
 		free/free.c \
 		free/return_error.c \
 		execution/execution.c \

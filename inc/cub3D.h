@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 15:54:00 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/02 17:39:30 by acomet           ###   ########.fr       */
+/*   Updated: 2023/10/15 17:55:12 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,13 @@ typedef struct s_rgb
 
 typedef struct s_texture
 {
-	char	*pathfile;
-	void	*sprite;
+	char			*pathfile;
+	mlx_texture_t	*png;
+	int				fd;
 }		t_texture;
 
 typedef struct s_game
 {
-	// void		*mlx;
 	void		*win;
 	char		**map;
 	t_player	*player;
@@ -129,6 +129,15 @@ char	*ft_strdup_cub(const char *s);
 int		init_map(t_game *game, char **split, int i);
 void	ft_valid_rgb(t_rgb *rgb);
 int		return_error_texture(int error, char **tab, char *msg);
+int		ft_check_if_error(t_game *game);
+int		check_if_player(char **map);
+
+/*	texture		*/
+int		check_png(t_texture *texture);
+int		check_if_exist(t_game *game);
+int		load_texture(t_game *game);
+int		check_size(t_texture *texture);
+
 
 /*	execution 66	*/
 int			execution(t_game *game);

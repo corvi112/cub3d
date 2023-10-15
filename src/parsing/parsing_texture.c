@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 19:30:48 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/09/28 15:00:58 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:18:55 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	check_rgb_texture(char *str)
 
 int	check_texture(t_game *game)
 {
-	if (check_rgb_texture(game->floor->rgb_line) == 1 || check_rgb_texture(game->ceiling->rgb_line) == 1)
+	if (check_rgb_texture(game->floor->rgb_line) == 1
+		|| check_rgb_texture(game->ceiling->rgb_line) == 1)
 	{
 		ft_putstr_fd("Error\nNot valid RGB format\n", 2);
 		return (1);

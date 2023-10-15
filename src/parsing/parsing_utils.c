@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:04:37 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/09/19 14:31:42 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:18:45 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	is_allow(char c)
 {
 	if (c == '1' || c == '0' || c == ' ' || c == 'N' || c == 'W'
-			|| c == 'S' || c == 'E')
+		|| c == 'S' || c == 'E')
 		return (0);
 	return (1);
 }
@@ -48,29 +48,30 @@ int	check_how_many(char **map)
 
 int	check_if_c_allow(char c)
 {
-	if (c == '1' || c == '0' || c == 'N'  || c == 'W' || c == 'S' || c == 'E')
+	if (c == '1' || c == '0' || c == 'N' || c == 'W' || c == 'S' || c == 'E')
 		return (0);
 	return (1);
 }
 
 int	check_around_0(char **map, int i, int j)
 {
-	if (map[i][j] == '0' || map[i][j] =='N' || map[i][j] =='W' || map[i][j] =='E' || map[i][j] =='S')
+	if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'W'
+		|| map[i][j] == 'E' || map[i][j] == 'S')
 	{
 		if (i <= 0 || i >= ft_strlen_tab(map) || j <= 0)
 			return (1);
-		if (check_if_c_allow(map[i - 1][j]) == 1)// check le caractère au dessus du 0
+		if (check_if_c_allow(map[i - 1][j]) == 1)
 			return (1);
-		if (check_if_c_allow(map[i][j - 1]) == 1)//check si le caractère a gauche du 0
+		if (check_if_c_allow(map[i][j - 1]) == 1)
 			return (1);
-		if (j < (int)ft_strlen(map[i]))//check si la ligne après existe
+		if (j < (int)ft_strlen(map[i]))
 		{
-			if (check_if_c_allow(map[i][j + 1]) == 1)//check si le caractère a droite du 0
+			if (check_if_c_allow(map[i][j + 1]) == 1)
 				return (1);
 		}
 		else
 			return (1);
-		if (check_if_c_allow(map[i + 1][j]) == 1)//check si le caractère en dessous du 0
+		if (check_if_c_allow(map[i + 1][j]) == 1)
 			return (1);
 	}
 	return (0);
@@ -78,7 +79,7 @@ int	check_around_0(char **map, int i, int j)
 
 int	check_filename(char *str)
 {
-	int	i;
+	int		i;
 	int		j;
 	char	*strr;
 

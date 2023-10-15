@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:37:53 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/09/27 15:52:41 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:16:07 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_if_double_map(char **split, int i)
 			return (1);
 		j++;
 	}
-    return (0);
+	return (0);
 }
 
 int	init_map(t_game *game, char **split, int i)

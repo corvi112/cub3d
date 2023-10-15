@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:53:49 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/02 17:39:38 by acomet           ###   ########.fr       */
+/*   Updated: 2023/10/12 15:40:20 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_forbidden_c(char **map)
 	while (map[i])
 	{
 		j = 0;
-		while(map[i][j])
+		while (map[i][j])
 		{
 			if (is_allow(map[i][j]) == 1)
 				return (1);
@@ -64,6 +64,11 @@ int	check_map(t_game *game)
 		ft_putstr_fd("Error\nToo many player\n", 2);
 		return (1);
 	}
+	if (check_if_player(game->map) == 1)
+	{
+		ft_putstr_fd("Error\nOne player required\n", 2);
+		return (1);
+	}
 	if (check_map_playable(game->map) == 1)
 	{
 		ft_putstr_fd("Error\nMap is not playable\n", 2);
@@ -100,7 +105,6 @@ t_game	*parsing(char *str)
 {
 	t_game	*game;
 
-	
 	if (check_extention(str) == 1)
 	{
 		ft_putstr_fd("Error\nThe file is not an extension '.cub'\n", 2);
@@ -116,6 +120,7 @@ t_game	*parsing(char *str)
 		return (NULL);
 	if (check_map(game) == 1)
 		return (NULL);
+	load_texture(game);
 	printf("texture NO = %s\ntexture SO = %s\ntexture EA = %s\ntexture WE = %s\n", game->north->pathfile, game->south->pathfile, game->east->pathfile, game->west->pathfile);
 	printf("---------------\n|    FLOOR    |\n---------------\n\n	RED = %i\n	GREEN = %i\n	BLUE = %i\n---------------\n|   CEILING   |\n---------------\n\n	RED = %i\n	GREEN = %i\n	BLUE = %i\n",game->floor->red, game->floor->green, game->floor->blue, game->ceiling->red, game->ceiling->green, game->ceiling->blue);
 	int i = 0;
