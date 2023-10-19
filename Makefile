@@ -6,7 +6,7 @@
 #    By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 15:39:30 by ecorvisi          #+#    #+#              #
-#    Updated: 2023/10/15 22:38:46 by acomet           ###   ########.fr        #
+#    Updated: 2023/10/19 17:04:06 by acomet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,8 @@ SRC = 	main.c\
 		execution/draw_rubikscube.c \
 		execution/draw_rays.c \
 		execution/movement_impossible.c \
+		execution/hex_to_decimal.c \
+		execution/get_pixel_color.c \
 		
 SRCS = $(SRC:%=$(SRC_DIR)/%)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -92,5 +94,11 @@ fclean:
 	@echo "\033[1;4m\033[1;31m\033[1;1m*      CLEANING ALL BINARY      *\033[0m"
 
 re: fclean all
+
+run:all
+	./cub3D maps/8-8_easy.cub
+
+run2:all
+	valgrind ./cub3D maps/8-8_easy.cub
 
 .PHONY: all clean fclean re

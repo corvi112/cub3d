@@ -6,7 +6,7 @@
 /*   By: acomet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 19:15:04 by acomet            #+#    #+#             */
-/*   Updated: 2023/10/15 21:33:31 by acomet           ###   ########.fr       */
+/*   Updated: 2023/10/18 16:11:27 by acomet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,14 @@ void	draw_rays(t_game *game, t_player *player, t_ray *ray)
 			ray->map_check_x += ray->step_x;
 			ray->length_final = ray->length_x;
 			ray->length_x += ray->step_length_x * SQUARE_MAP;
+			ray->length_letter = 'x';
 		}
 		else
 		{
 			ray->map_check_y += ray->step_y;
 			ray->length_final = ray->length_y;
 			ray->length_y += ray->step_length_y * SQUARE_MAP;
+			ray->length_letter = 'y';
 		}
 		if (game->map[ray->map_check_y][ray->map_check_x] == '1')
 			ray->end = 42;
@@ -86,5 +88,5 @@ void	assign_coor_draw_line(t_game *game, t_ray ray)
 	coor.y1 = SQUARE_MAP * MAP_SIZE;
 	coor.x2 = SQUARE_MAP * MAP_SIZE + (ray.dir_x * ray.length_final);
 	coor.y2 = SQUARE_MAP * MAP_SIZE + (ray.dir_y * ray.length_final);
-	draw_line(game->mlx->mini_map, coor, GREEN);
+	draw_line_ray(game->mlx->mini_map, coor, GREEN);
 }

@@ -1,0 +1,2 @@
+-mlx_set_icon pour avoir un icon en haut de la fenêtre
+

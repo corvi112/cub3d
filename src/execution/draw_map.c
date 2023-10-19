@@ -6,7 +6,7 @@
 /*   By: acomet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:26:42 by acomet            #+#    #+#             */
-/*   Updated: 2023/10/15 22:36:33 by acomet           ###   ########.fr       */
+/*   Updated: 2023/10/19 17:46:13 by acomet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 uint32_t	get_square_color(char **map, int x, int y, t_game *game)
 {
-	int x_square;
+	int	x_square;
 	int	y_square;
-	
+
 	y_square = y / SQUARE_MAP;
 	x_square = x / SQUARE_MAP;
-	if (y < 0 || x < 0 || y_square >= game->player->y_max || x_square >= game->player->x_max[y_square])
+	if (y < 0 || x < 0 || y_square >= game->player->y_max
+		|| x_square >= game->player->x_max[y_square])
 		return (BASIC);
 	if (map[y_square][x_square] == '0')
 		return (BLACK);
@@ -37,21 +38,23 @@ static void	draw_map_check_partial(t_game *game, t_player *player, t_coor *coor)
 	{
 		draw_map_partial_square_axis_first(game, player, *coor);
 		draw_map_partial_square_axis_last(game, player, *coor);
-		coor->y1 = player->py - ((int)player->py % SQUARE_MAP) - (SQUARE_MAP * (MAP_SIZE - 1));
+		coor->y1 = player->py - ((int)player->py % SQUARE_MAP)
+			- (SQUARE_MAP * (MAP_SIZE - 1));
 		coor->y2 = coor->y1 + (SQUARE_MAP * ((MAP_SIZE * 2) - 1));
 	}
 	if (coor->x1 % SQUARE_MAP)
 	{
 		draw_map_partial_square_ordin_first(game, player, *coor);
 		draw_map_partial_square_ordin_last(game, player, *coor);
-		coor->x1 = player->px - ((int)player->px % SQUARE_MAP) - (SQUARE_MAP * (MAP_SIZE - 1));
+		coor->x1 = player->px - ((int)player->px % SQUARE_MAP)
+			- (SQUARE_MAP * (MAP_SIZE - 1));
 		coor->x2 = coor->x1 + (SQUARE_MAP * ((MAP_SIZE * 2) - 1));
 	}
 }
 
 void	draw_map(t_game *game, t_player *player)
 {
-	t_coor 		coor;
+	t_coor		coor;
 	uint32_t	color;
 	int			temp;
 

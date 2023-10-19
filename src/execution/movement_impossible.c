@@ -6,7 +6,7 @@
 /*   By: acomet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 19:10:23 by acomet            #+#    #+#             */
-/*   Updated: 2023/10/10 22:29:40 by acomet           ###   ########.fr       */
+/*   Updated: 2023/10/19 17:44:42 by acomet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,21 @@ int	movement_impossible(char **map, t_player *player, t_coor coor)
 {
 	t_coor	point;
 
-	/* if inferieur au minimum de la fenetre */
 	if (coor.x2 < 0 || coor.y2 < 0)
 		return (0);
 	point.x1 = coor.x1 / SQUARE_MAP;
 	point.x2 = coor.x2 / SQUARE_MAP;
 	point.y1 = coor.y1 / SQUARE_MAP;
 	point.y2 = coor.y2 / SQUARE_MAP;
-
-	/* if superieur au maximum de la map */
 	if (point.y2 >= player->y_max || point.x2 >= player->x_max[point.y2])
 		return (0);
-	/* empeche de passer dans les coins */
 	if (point.x1 != point.x2 && point.y1 != point.y2)
 	{
 		if (map[point.y1][point.x2] == '1' && map[point.y2][point.x1] == '1')
 			return (0);
 	}
-	/* if case d'arrivé valid */
 	if (!case_accessible(map, point.x2, point.y2))
 		return (1);
-	/* for sliiiiiiiide */
 	if (!case_accessible(map, point.x2, point.y1))
 		return (2);
 	if (!case_accessible(map, point.x1, point.y2))
