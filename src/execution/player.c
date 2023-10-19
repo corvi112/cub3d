@@ -6,11 +6,35 @@
 /*   By: acomet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:16:18 by acomet            #+#    #+#             */
-/*   Updated: 2023/10/15 21:22:59 by acomet           ###   ########.fr       */
+/*   Updated: 2023/10/19 17:55:25 by acomet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static int	init_player_position_follow(char direction, t_player *player,
+		int x, int y)
+{
+	if (direction == 'E')
+	{
+		player->pa = 0;
+		player->px = x * SQUARE_MAP + ((SQUARE_MAP + 1) / 2);
+		player->py = y * SQUARE_MAP + ((SQUARE_MAP + 1) / 2);
+		player->pdx = cos(player->pa);
+		player->pdy = sin(player->pa);
+		return (1);
+	}
+	else if (direction == 'W')
+	{
+		player->pa = PI;
+		player->px = x * SQUARE_MAP + ((SQUARE_MAP + 1) / 2);
+		player->py = y * SQUARE_MAP + ((SQUARE_MAP + 1) / 2);
+		player->pdx = cos(player->pa);
+		player->pdy = sin(player->pa);
+		return (1);
+	}
+	return (0);
+}
 
 static int	init_player_position(char direction, t_player *player, int x, int y)
 {
@@ -32,25 +56,8 @@ static int	init_player_position(char direction, t_player *player, int x, int y)
 		player->pdy = sin(player->pa);
 		return (1);
 	}
-	else if (direction == 'E')
-	{
-		player->pa = 0;
-		player->px = x * SQUARE_MAP + ((SQUARE_MAP + 1) / 2);
-		player->py = y * SQUARE_MAP + ((SQUARE_MAP + 1) / 2);
-		player->pdx = cos(player->pa);
-		player->pdy = sin(player->pa);
-		return (1);
-	}
-	else if (direction == 'W')
-	{
-		player->pa = PI;
-		player->px = x * SQUARE_MAP + ((SQUARE_MAP + 1) / 2);
-		player->py = y * SQUARE_MAP + ((SQUARE_MAP + 1) / 2);
-		player->pdx = cos(player->pa);
-		player->pdy = sin(player->pa);
-		return (1);
-	}
-	return (0);
+	else
+		return (init_player_position_follow(direction, player, x, y));
 }
 
 static int	init_player_x_y_max(char **map, t_player *player)

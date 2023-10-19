@@ -6,7 +6,7 @@
 /*   By: acomet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 03:03:37 by acomet            #+#    #+#             */
-/*   Updated: 2023/10/17 03:04:14 by acomet           ###   ########.fr       */
+/*   Updated: 2023/10/19 17:55:51 by acomet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 unsigned int	get_hex_in_decimal(uint8_t *rgba, int i)
 {
-	return (rgba[i] << (8 * 3) | rgba[i + 1] << (8 * 2) | rgba[i + 2] << 8 | rgba[i + 3]);
+	return (rgba[i] << (8 * 3) | rgba[i + 1] << (8 * 2)
+		| rgba[i + 2] << 8 | rgba[i + 3]);
 }
