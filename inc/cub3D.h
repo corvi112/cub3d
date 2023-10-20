@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 15:54:00 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/19 17:43:49 by acomet           ###   ########.fr       */
+/*   Updated: 2023/10/20 14:36:36 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_texture
 
 typedef struct s_game
 {
+	int			fd;
 	void		*win;
 	char		**map;
 	t_player	*player;
@@ -117,26 +118,41 @@ typedef struct s_game
 	t_texture	*east;
 }		t_game;
 
-void			ft_free_tab(char **str);
-t_game			*parsing(char *str);
-t_game			*ft_init_game(char *str);
-int				is_white_space(char c);
-char			*ft_strdup_start(char *str, int start);
-char			**ft_strdup_tab_start(char **tab, int start);
-int				ft_init_game_texture(t_game *game, char **split);
-void			ft_free_game(t_game *game);
-int				is_allow(char c);
-int				check_how_many(char **map);
-int				check_around_0(char **map, int i, int j);
-int				check_texture(t_game *game);
-int				check_filename(char *str);
-char			*ft_recover_rgb(char *str, int i);
-char			*ft_strdup_cub(const char *s);
-int				init_map(t_game *game, char **split, int i);
+void				ft_free_tab(char **str);
+t_game				*parsing(char *str);
+t_game				*ft_init_game(char *str);
+int					is_white_space(char c);
+char				*ft_strdup_start(char *str, int start);
+char				**ft_strdup_tab_start(char **tab, int start);
+int					ft_init_game_texture(t_game *game, char **split);
+void				ft_free_game(t_game *game);
+int					is_allow(char c);
+int					check_how_many(char **map);
+int					check_around_0(char **map, int i, int j);
+int					check_texture(t_game *game);
+int					check_filename(char *str);
+char				*ft_strdup_cub(const char *s);
+int					init_map(t_game *game, char **split, int i);
+int					return_error_texture(int error, char **tab, char *msg);
+int					ft_check_if_error(t_game *game);
+int					check_if_player(char **map);
+
+/*	init_utils		*/
+int				ft_check_if_double_texture(t_game *game, char *str);
+int				check_if_wall(char *str);
+
+/*	init_texture	*/
+int				is_texture(char *str);
+
+/*	init_RGB_utils	*/
+int				check_order(char *str);
+
+/*	init_RGB		*/
 void			ft_valid_rgb(t_rgb *rgb);
-int				return_error_texture(int error, char **tab, char *msg);
-int				ft_check_if_error(t_game *game);
-int				check_if_player(char **map);
+char			*ft_recover_rgb(char *str, int i);
+void			ft_fill_buff(char *rgb_line, int *i, char *buff);
+int				strlen_color(char *str);
+
 
 /*	texture		*/
 int				check_png(t_texture *texture);

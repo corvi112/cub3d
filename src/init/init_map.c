@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:37:53 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/03 15:16:07 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/19 14:13:18 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 int	check_if_double_map(char **split, int i)
 {
 	int	j;
-	int	boolean;
 
 	j = i;
-	boolean = 0;
+	while (split[j] && ft_strlen(split[j]) > 0)
+		j++;
 	while (split[j])
 	{
-		if (ft_strchr(split[j], '1') == NULL)
-			boolean = 1;
-		if (boolean == 1 && ft_strchr(split[j], '1') != NULL)
+		if (ft_strchr(split[j], '1') != NULL || ft_strchr(split[j], '0') != NULL
+			|| ft_strchr(split[j], 'N') != NULL
+			|| ft_strchr(split[j], 'S') != NULL
+			|| ft_strchr(split[j], 'W') != NULL 
+			|| ft_strchr(split[j], 'E') != NULL)
 			return (1);
 		j++;
 	}

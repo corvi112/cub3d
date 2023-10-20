@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 15:35:16 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/15 17:56:36 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/18 17:06:14 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	check_png(t_texture *texture)
 	i -= 4;
 	if (ft_strncmp(".png", &texture->pathfile[i], 4) == 0)
 		return (0);
-	printf("Error\nWrong extension file for texture\n");
+	ft_putstr_fd("Error\nWrong extension file for texture\n", 2);
 	return (1);
 }
 
@@ -48,7 +48,7 @@ static int	close_texture_check(t_game *game)
 	if (game->north->fd == -1 || game->south->fd == -1
 		|| game->east->fd == -1 || game->west->fd == -1)
 	{
-		printf("Error\nCan't open texture file\n");
+		ft_putstr_fd("Error\nCan't open texture file\n", 2);
 		return (1);
 	}
 	return (-1);

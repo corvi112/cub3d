@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:04:37 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/03 15:18:45 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:19:02 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_around_0(char **map, int i, int j)
 	{
 		if (i <= 0 || i >= ft_strlen_tab(map) || j <= 0)
 			return (1);
-		if (check_if_c_allow(map[i - 1][j]) == 1)
+		if (j > ft_strlen_gnl_cub(map[i - 1]) || check_if_c_allow(map[i - 1][j]) == 1)
 			return (1);
 		if (check_if_c_allow(map[i][j - 1]) == 1)
 			return (1);
@@ -71,7 +71,7 @@ int	check_around_0(char **map, int i, int j)
 		}
 		else
 			return (1);
-		if (check_if_c_allow(map[i + 1][j]) == 1)
+		if (!map[i + 1] || j > ft_strlen_gnl_cub(map[i + 1]) || check_if_c_allow(map[i + 1][j]) == 1)
 			return (1);
 	}
 	return (0);

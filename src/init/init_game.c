@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:38:12 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/15 18:05:33 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/19 14:25:42 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,24 @@ static char	**ft_addtab(char	**tab, char *str)
 	return (dup_tab);
 }
 
-char	**recover_file(char *str)
+char	**recover_file(t_game *game, char *str)
 {
-	int		fd;
 	char	**split;
 	char	*buffer;
 
-	fd = open(str, O_RDWR);
-	if (fd == -1)
+	game->fd = open(str, O_RDWR);
+	if (game->fd == -1)
 	{
 		ft_putstr_fd("Error\nProblem opening file\n", 2);
 		return (NULL);
 	}
-	buffer = get_next_line_cub(fd);
+	buffer = get_next_line_cub(game->fd);
 	split = ft_calloc(sizeof (char **), 1);
 	while (buffer)
 	{
 		split = ft_addtab(split, buffer);
 		free(buffer);
-		buffer = get_next_line_cub(fd);
+		buffer = get_next_line_cub(game->fd);
 	}
 	return (split);
 }
@@ -83,9 +82,10 @@ t_game	*ft_init_game(char *str)
 	game->floor->rgb_line = NULL;
 	game->ceiling->rgb_line = NULL;
 	game->map = NULL;
-	split = recover_file(str);
-	if (!split || ft_init_game_texture(game, split) == 1)
-	{
+	game->fd = 0;
+	split = recover_file(game, str);
+	if (!split || ft_init_game_texture(game, split) == 1 || ft_check_if_error(game) == 1)
+	{			
 		ft_free_game(game);
 		return (NULL);
 	}

@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 15:44:55 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/19 20:24:56 by acomet           ###   ########.fr       */
+/*   Updated: 2023/10/20 14:35:19 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("Error\nToo many argument\n", 2);
 		return (1);
 	}
 	game = parsing(argv[1]);

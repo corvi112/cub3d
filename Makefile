@@ -6,7 +6,7 @@
 #    By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 15:39:30 by ecorvisi          #+#    #+#              #
-#    Updated: 2023/10/19 17:04:06 by acomet           ###   ########.fr        #
+#    Updated: 2023/10/20 14:35:11 by ecorvisi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC = 	main.c\
 		init/init_game.c \
 		init/init_texture.c \
 		init/init_RGB.c \
+		init/init_RGB_utils.c \
 		init/init_map.c\
 		init/init_utils.c \
 		gnl/get_next_line_cub.c\

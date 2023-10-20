@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:17:34 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/09/28 15:15:41 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/20 14:31:27 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	ft_reco_rgb_number(char *str, int i, char *rgb, int j)
 	char	*buff;
 
 	k = 0;
+	if (str[i] != ',' && (strlen_color(&str[i]) > 3 || strlen_color(&str[i]) == 0))
+		return (1);
 	buff = ft_calloc(4, sizeof(char));
 	while (str[i] && str[i] != ',' && is_white_space(str[i]) == 0)
 	{
@@ -87,6 +89,11 @@ char	*ft_recover_rgb(char *str, int i)
 {
 	char	*buff;
 
+	if (check_order(&str[i]) == 1)
+	{
+		ft_putstr_fd("Error\nInvalid format RGB\n", 2);
+		return (NULL);
+	}
 	while (str[i] && is_white_space(str[i]) == 1)
 		i++;
 	if (check_rgb_format(str, i) == 1)
@@ -106,7 +113,6 @@ char	*ft_recover_rgb(char *str, int i)
 void	ft_valid_rgb(t_rgb *rgb)
 {
 	int		i;
-	int		j;
 	int		order;
 	char	*buff;
 
@@ -114,13 +120,8 @@ void	ft_valid_rgb(t_rgb *rgb)
 	order = 1;
 	while (rgb->rgb_line[i] != '\0')
 	{
-		j = -1;
 		buff = ft_calloc(4, sizeof(char));
-		while (rgb->rgb_line[i] && rgb->rgb_line[i] != ',')
-		{
-			buff[++j] = rgb->rgb_line[i];
-			i++;
-		}
+		ft_fill_buff(rgb->rgb_line, &i, buff);
 		if (order == 1)
 			rgb->red = ft_atoi(buff);
 		else if (order == 2)

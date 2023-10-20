@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:53:49 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/12 15:40:20 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:09:00 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,17 +118,10 @@ t_game	*parsing(char *str)
 	game = ft_init_game(str);
 	if (!game)
 		return (NULL);
-	if (check_map(game) == 1)
-		return (NULL);
-	load_texture(game);
-	printf("texture NO = %s\ntexture SO = %s\ntexture EA = %s\ntexture WE = %s\n", game->north->pathfile, game->south->pathfile, game->east->pathfile, game->west->pathfile);
-	printf("---------------\n|    FLOOR    |\n---------------\n\n	RED = %i\n	GREEN = %i\n	BLUE = %i\n---------------\n|   CEILING   |\n---------------\n\n	RED = %i\n	GREEN = %i\n	BLUE = %i\n",game->floor->red, game->floor->green, game->floor->blue, game->ceiling->red, game->ceiling->green, game->ceiling->blue);
-	int i = 0;
-	while(game->map[i])
+	if (check_map(game) == 1 || load_texture(game) == 1)
 	{
-		printf("%s\n", game->map[i]);
-		i++;
+		ft_free_game(game);
+		return (NULL);
 	}
-	printf("\n");
 	return (game);
 }

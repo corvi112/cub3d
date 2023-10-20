@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:30:07 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/15 18:05:59 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/20 14:33:46 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void	ft_free_game(t_game *game)
 		free(game->floor->rgb_line);
 	free(game->floor);
 	free(game->ceiling);
+	close(game->fd);
 	free(game);
 }

@@ -6,7 +6,7 @@
 /*   By: ecorvisi <ecorvisi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:40:21 by ecorvisi          #+#    #+#             */
-/*   Updated: 2023/10/03 15:11:54 by ecorvisi         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:00:06 by ecorvisi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,17 @@ void	ft_init_texture(char *str, t_game *game)
 	else if (str[k] == 'E' && str[k + 1] != '\0' && str[k + 1] == 'A')
 		game->east->pathfile = ft_strdup_start(str, i);
 	else if (str[k] == 'F')
+	{
 		game->floor->rgb_line = ft_recover_rgb(str, i);
+		if (!game->floor->rgb_line)
+			game->floor->rgb_line = ft_strdup("error");
+	}
 	else if (str[k] == 'C')
+	{
 		game->ceiling->rgb_line = ft_recover_rgb(str, i);
+		if (!game->ceiling->rgb_line)
+			game->ceiling->rgb_line = ft_strdup("error");
+	}
 }
 
 int	check_line(char *str)
@@ -78,28 +86,21 @@ int	check_line(char *str)
 int	ft_check_if_texture(t_game *game, char **split)
 {
 	int	i;
-	int	k;
 
 	i = 0;
-	k = 0;
-	while (split[i])
+	while (split[i] && check_if_wall(split[i]) == 0)
 	{
-		if (k == 6)
-			break ;
 		if (is_texture(split[i]) == 0)
 		{
+			if (ft_check_if_double_texture(game, split[i]) == 1)
+				return (return_error_texture(-1, split, "Error\nDouble texture\n"));
 			ft_init_texture(split[i], game);
-			k++;
 		}
 		else if (check_line(split[i]) == 1)
 			return (return_error_texture(-1, split,
 					"Error\nNot only texture before map\n"));
 		i++;
 	}
-	if (ft_check_if_error(game) == 1)
-		return (return_error_texture(-1, split, NULL));
-	if (k < 6)
-		return (return_error_texture(-1, split, "Error\nTexture missing\n"));
 	return (i);
 }
 
@@ -110,8 +111,7 @@ int	ft_init_game_texture(t_game *game, char **split)
 	i = ft_check_if_texture(game, split);
 	if (i == -1)
 		return (1);
-	if (!game->floor->rgb_line || !game->ceiling->rgb_line
-		|| check_texture(game) == 1)
+	if (check_texture(game) == 1)
 	{
 		ft_free_tab(split);
 		return (1);
